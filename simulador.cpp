@@ -6,53 +6,54 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-void Simulador::recebedados(FILE* fDados)
+Simulador::Simulador()
 {
-	
-	int teste[400];
-	int cont = 0, cont2 = 0;
+	tmpMax = 0;
+	velmin = 0;
+	velmax = 0;
 
-	//variaveis de entrada
-	int tmpMax = 0;
-	int velmin = 0, velmax = 0;
-	int vet[4];
+	for (int i = 0; i < MAX; i++)
+		teste[i]=0;
+}
 
+void Simulador::recebedados(FILE* fDadosEntrada)
+{
+	int cont = 0;
 
-	if (fDados == NULL){ cout<<"Erro ao abrir arquivo!"<<endl; }
+	//verifica se o arquivo foi aberto com sucesso
+	if (fDadosEntrada == NULL){ cout<<"Erro ao abrir arquivo!"<<endl; }
 
-	while(!feof(fDados))
+	//atribui ao vetor teste todos os valores inteiros
+	while(!feof(fDadosEntrada))
 	{
-		fscanf(fDados, "%i", &teste[cont]);
+		if (cont == 0)
+			fscanf(fDadosEntrada, "%i", &tmpMax);
+		else if(cont == 1)
+			fscanf(fDadosEntrada, "%i", &velmin);
+		else if(cont == 2)
+			fscanf(fDadosEntrada, "%i", &velmax);
+		else
+			fscanf(fDadosEntrada, "%i", &teste[cont-3]);
 		cont+=1;
 	}
 	
-	fclose(fDados);
+	//fecha o arquivo de entrada
+	fclose(fDadosEntrada);
+}
 
-	tmpMax = teste[0];
-	velmin = teste[1];
-	velmax = teste[2];
+void Simulador::enviandodados(FILE* enviandodados)
+{
+	int contadorMAX = 10;
+	int testedados[10] = {10,9,8,7,6,5,4,3,2,1}; 
+	int i = 0;
 
-	for (int i = 0; i < cont; i++)
+	while(i < contadorMAX)
 	{
-		if (i == 0)
-		{
-			cout<<tmpMax<<endl;
-		}
-		else if (i == 2)
-		{
-			cout<<velmin<<" "<<velmax<<endl;
-		}
-		else if (i > 2)
-		{
-			cont2+=1;
-			cout<<teste[i]<<" ";
-			if (cont2 == 3)
-			{
-				cout<<endl;
-				cont2 = 0;
-			}
-		}
+		if (i%2==0)
+			fprintf(enviandodados, "\n");
+		fprintf(enviandodados, "%i\t", testedados[i]);
+		i++;
 	}
-	int x;
-	cin>>x;
+
+	fclose(enviandodados);
 }

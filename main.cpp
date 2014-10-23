@@ -9,13 +9,12 @@ int main()
 
 	Simulador simulador;
 
-	while(!close)
-	{
-		FILE *fDados;
-		fDados = fopen("simulador.txt","r");
-		
-		simulador.recebedados(fDados);
-	}
-	
+	FILE *fDadosEntrada, *fDadosSaida;
+	fDadosEntrada = fopen("entrada.txt","r");
+	fDadosSaida = fopen("saida.txt","w");
+
+	simulador.recebedados(fDadosEntrada);
+	simulador.enviandodados(fDadosSaida);
+
 	return 0;
 }
