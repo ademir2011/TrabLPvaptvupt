@@ -2,8 +2,18 @@
 #include "lista.h"
 
 
-void CriarCaixa();
-void InserirNaFila();
-void RemoverDaFila();
-void AdicionarCaixa();
-void RetirarCaixa();
+void CriarCaixa(Caixa* fila){
+
+}
+void InserirPNaFila(Caixa* fila, int n){
+
+}
+void RemoverPDaFila(Caixa* fila, int n){
+
+}
+void AdicionarCaixa(Caixa* fila){
+
+}
+void RetirarCaixa(Caixa* fila){
+
+}
