@@ -1,0 +1,25 @@
+#ifndef _LISTA_H_
+#define _LISTA_H_
+
+class Lista{
+	public:
+	int info;	
+	Lista *prox;
+
+	void criarlistavazia();
+	void insere (int x);
+	void imprime();
+	void remover(int x);
+
+};
+
+
+/*
+void CriarCaixa(Caixa* fila);
+void InserirPNaFila(Caixa* fila, int n);
+void RemoverPDaFila(Caixa* fila, int n);
+void AdicionarCaixa(Caixa* fila);
+void RetirarCaixa(Caixa* fila);
+*/
+
+#endif
